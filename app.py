@@ -18,7 +18,11 @@ def main():
     # Connect to the database
     conn = get_db_connection()
     cursor = conn.cursor()
-
+    # cursor.execute("DROP TABLE articles ")
+    # cursor.execute("DROP TABLE magazines ")
+    # cursor.execute("DROP TABLE authors ")
+    # conn.commit()
+    # conn.close()
 
     '''
         The following is just for testing purposes, 
@@ -26,17 +30,14 @@ def main():
     '''
 
     # Create an author
-    cursor.execute('INSERT INTO authors (name) VALUES (?)', (author_name,))
-    author_id = cursor.lastrowid # Use this to fetch the id of the newly created author
+    author = Author(author_name)
 
     # Create a magazine
-    cursor.execute('INSERT INTO magazines (name, category) VALUES (?,?)', (magazine_name, magazine_category))
-    magazine_id = cursor.lastrowid # Use this to fetch the id of the newly created magazine
+    magazine = Magazine(magazine_name,magazine_category)
 
     # Create an article
-    cursor.execute('INSERT INTO articles (title, content, author_id, magazine_id) VALUES (?, ?, ?, ?)',
-                   (article_title, article_content, author_id, magazine_id))
-
+    article =Article(article_title,author,magazine)
+    article.content(article_content)
     conn.commit()
 
     # Query the database for inserted records. 
@@ -53,18 +54,19 @@ def main():
 
     conn.close()
 
-    # Display results
-    print("\nMagazines:")
-    for magazine in magazines:
-        print(Magazine(magazine["id"], magazine["name"], magazine["category"]))
+    # # Display results
+    # print("\nMagazines:")
+    # for magazine in magazines:
+    #     print(Magazine(magazine["id"], magazine["name"], magazine["category"]))
 
-    print("\nAuthors:")
-    for author in authors:
-        print(Author(author["id"], author["name"]))
+    # print("\nAuthors:")
+    # for author in authors:
+    #     print(Author(author["id"], author["name"]))
 
-    print("\nArticles:")
-    for article in articles:
-        print(Article(article["id"], article["title"], article["content"], article["author_id"], article["magazine_id"]))
+    # print("\nArticles:")
+    # for article in articles:
+    #     print(Article(article["id"], article["title"], article["content"], article["author_id"], article["magazine_id"]))
+
 
 if __name__ == "__main__":
     main()
