@@ -21,7 +21,8 @@ class Magazine:
         if id is None :
             CONN = get_db_connection()
             CURSOR = CONN.cursor()
-            CURSOR.execute("INSERT INTO magazines (name,category) VALUES(?,?)", (name,category))
+            CURSOR.execute("INSERT INTO magazines (name,category) VALUES(?,?)", (self._name,self._category))
+            CONN.commit()
             self._id = CURSOR.lastrowid
             CONN.close()
 

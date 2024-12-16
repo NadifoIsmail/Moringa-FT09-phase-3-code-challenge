@@ -12,7 +12,8 @@ class Author:
         if id is None :
             CONN = get_db_connection()
             CURSOR = CONN.cursor()
-            CURSOR.execute("INSERT INTO authors (name)VALUES(?)", (name,))
+            CURSOR.execute("INSERT INTO authors (name)VALUES(?)", (self._name,))
+            CONN.commit()
             self._id = CURSOR.lastrowid
             CONN.close()
 

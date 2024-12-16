@@ -79,6 +79,7 @@ class Article:
         CONN = get_db_connection()
         CURSOR = CONN.cursor()
         CURSOR.execute("UPDATE articles SET content = ? WHERE articles.id = ?",(article_content,self._id))
+        CONN.commit()
         CONN.close()
         
      

@@ -30,10 +30,10 @@ def main():
     '''
 
     # Create an author
-    author = Author(author_name)
+    author = Author(name=author_name)
 
     # Create a magazine
-    magazine = Magazine(magazine_name,magazine_category)
+    magazine = Magazine(name=magazine_name,category=magazine_category)
 
     # Create an article
     article =Article(article_title,author,magazine)
