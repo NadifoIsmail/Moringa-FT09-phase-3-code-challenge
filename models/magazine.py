@@ -2,7 +2,7 @@ from database.connection import get_db_connection
 from models.author import Author
 
 class Magazine:
-    def __init__(self, name, category, id=None):
+    def __init__(self, id=None, name = None, category = None ):
         if not isinstance(name,str):
             raise Exception("Name must be a string")
         

@@ -3,7 +3,7 @@ from models.author import Author
 from models.magazine import Magazine
 
 class Article:
-    def __init__(self, title, author, magazine):
+    def __init__(self,title, author,magazine):
         if not isinstance(title,str):
             raise Exception ("Title must be of type string")
         if not(5 <=len(title)<= 50):
@@ -14,10 +14,11 @@ class Article:
         
         if not isinstance(magazine,Magazine):
             raise Exception("magazine must be an instance of Magazine ")
-        
+
         self._title = title
         self._author= author
         self._magazine= magazine
+
 
         CONN = get_db_connection()
         CURSOR = CONN.cursor()

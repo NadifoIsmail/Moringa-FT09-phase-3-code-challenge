@@ -1,7 +1,7 @@
 from database.connection import get_db_connection
 
 class Author:
-    def __init__(self, name, id=None):
+    def __init__(self, id=None, name=None):
         if not isinstance(name,str):
             raise Exception("Name must be a string")
         
